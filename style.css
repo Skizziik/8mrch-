@@ -48,20 +48,6 @@ img {
   padding: 32px 0 80px;
 }
 
-.floral-banner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 4px auto 24px;
-  padding: 4px 0 0;
-}
-
-.floral-banner img {
-  width: min(320px, 70vw);
-  filter: drop-shadow(0 18px 28px rgba(217, 120, 141, 0.16));
-  animation: drift 7s ease-in-out infinite;
-}
-
 .ambient {
   position: fixed;
   z-index: -2;
@@ -83,34 +69,6 @@ img {
   right: -10rem;
   bottom: 3rem;
   background: rgba(243, 217, 149, 0.45);
-}
-
-.petals {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.petal {
-  position: absolute;
-  top: -10%;
-  width: 18px;
-  height: 28px;
-  --drift-x: 30px;
-  --twist-start: 0deg;
-  --twist-end: 320deg;
-  --scale: 1;
-  background:
-    radial-gradient(circle at 40% 30%, rgba(255, 255, 255, 0.95), transparent 28%),
-    linear-gradient(180deg, rgba(255, 201, 214, 0.98), rgba(217, 120, 141, 0.9));
-  border-radius: 60% 40% 60% 40%;
-  opacity: 0.8;
-  animation-name: fall;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  box-shadow: 0 10px 18px rgba(217, 120, 141, 0.16);
 }
 
 .hero {
@@ -304,15 +262,15 @@ img {
   box-shadow: var(--shadow);
 }
 
-.quote-icon {
+.quote-art {
   display: grid;
   place-items: center;
-  width: 62px;
-  height: 62px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, rgba(217, 120, 141, 0.18), rgba(243, 217, 149, 0.42));
-  color: var(--rose-deep);
-  font-size: 1.8rem;
+}
+
+.quote-art img {
+  width: 120px;
+  filter: drop-shadow(0 18px 24px rgba(115, 63, 75, 0.12));
+  animation: drift 7s ease-in-out infinite;
 }
 
 .gallery-section {
@@ -399,9 +357,9 @@ img {
   place-items: center;
 }
 
-.cat-bouquet-image {
-  width: min(300px, 100%);
-  filter: drop-shadow(0 20px 30px rgba(115, 63, 75, 0.14));
+.bouquet-image {
+  width: min(340px, 100%);
+  filter: drop-shadow(0 26px 36px rgba(115, 63, 75, 0.16));
   animation: drift 7s ease-in-out infinite;
 }
 
@@ -414,15 +372,6 @@ img {
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
-}
-
-@keyframes fall {
-  0% {
-    transform: translate3d(0, -10vh, 0) rotate(var(--twist-start)) scale(var(--scale));
-  }
-  100% {
-    transform: translate3d(var(--drift-x), 112vh, 0) rotate(var(--twist-end)) scale(var(--scale));
-  }
 }
 
 @keyframes drift {
@@ -472,10 +421,6 @@ img {
 
   .hero-visual {
     min-height: 520px;
-  }
-
-  .floral-banner {
-    margin-bottom: 12px;
   }
 
   .portrait-main {
@@ -535,8 +480,12 @@ img {
     min-height: 220px;
   }
 
-  .cat-bouquet-image {
-    width: min(220px, 100%);
+  .quote-art img {
+    width: 90px;
+  }
+
+  .bouquet-image {
+    width: min(240px, 100%);
   }
 }
 
