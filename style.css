@@ -1,0 +1,543 @@
+:root {
+  --bg: #fff7f5;
+  --bg-strong: #ffe8e1;
+  --surface: rgba(255, 249, 246, 0.72);
+  --surface-strong: rgba(255, 252, 249, 0.88);
+  --ink: #412b2e;
+  --muted: #7d5f64;
+  --rose: #d9788d;
+  --rose-deep: #b9586f;
+  --peach: #f2b7a8;
+  --gold: #f3d995;
+  --shadow: 0 24px 60px rgba(115, 63, 75, 0.16);
+  --radius-lg: 32px;
+  --radius-md: 24px;
+  --radius-sm: 18px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(255, 214, 224, 0.85), transparent 28%),
+    radial-gradient(circle at right 10% top 20%, rgba(255, 233, 183, 0.6), transparent 18%),
+    linear-gradient(180deg, #fff7f4 0%, #fff2ef 42%, #fffaf6 100%);
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+.page-shell {
+  position: relative;
+  isolation: isolate;
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 32px 0 80px;
+}
+
+.ambient {
+  position: fixed;
+  z-index: -2;
+  width: 30rem;
+  height: 30rem;
+  border-radius: 50%;
+  filter: blur(50px);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.ambient-left {
+  top: -8rem;
+  left: -12rem;
+  background: rgba(234, 163, 186, 0.42);
+}
+
+.ambient-right {
+  right: -10rem;
+  bottom: 3rem;
+  background: rgba(243, 217, 149, 0.45);
+}
+
+.petals {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.petal {
+  position: absolute;
+  top: -10%;
+  width: 18px;
+  height: 28px;
+  --drift-x: 30px;
+  --twist-start: 0deg;
+  --twist-end: 320deg;
+  --scale: 1;
+  background:
+    radial-gradient(circle at 40% 30%, rgba(255, 255, 255, 0.95), transparent 28%),
+    linear-gradient(180deg, rgba(255, 201, 214, 0.98), rgba(217, 120, 141, 0.9));
+  border-radius: 60% 40% 60% 40%;
+  opacity: 0.8;
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  box-shadow: 0 10px 18px rgba(217, 120, 141, 0.16);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 36px;
+  align-items: center;
+  padding: 28px 0 40px;
+}
+
+.hero-copy,
+.quote-card,
+.wish-section,
+.gallery-card,
+.hero-visual {
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.hero-copy {
+  padding: 42px;
+  background: linear-gradient(160deg, var(--surface-strong), rgba(255, 239, 236, 0.72));
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  font-size: 0.82rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--rose-deep);
+}
+
+.hero h1,
+.section-heading h2,
+.wish-copy h2 {
+  margin: 0;
+  font-family: Baskerville, "Palatino Linotype", "Book Antiqua", serif;
+  font-weight: 600;
+  line-height: 0.96;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 7vw, 5.8rem);
+}
+
+.hero h1 span {
+  display: block;
+  color: var(--rose-deep);
+}
+
+.lead,
+.message,
+.quote-card p,
+.wish-copy p {
+  line-height: 1.75;
+  font-size: 1.03rem;
+}
+
+.lead {
+  margin: 26px 0 14px;
+  color: var(--ink);
+}
+
+.message,
+.wish-copy p {
+  color: var(--muted);
+}
+
+.hero-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 18px;
+  padding: 14px 22px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--rose), var(--rose-deep));
+  color: #fffaf7;
+  text-decoration: none;
+  box-shadow: 0 18px 32px rgba(185, 88, 111, 0.26);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.hero-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 24px 36px rgba(185, 88, 111, 0.32);
+}
+
+.hero-visual {
+  position: relative;
+  min-height: 680px;
+}
+
+.portrait,
+.mini-card {
+  position: absolute;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  box-shadow: var(--shadow);
+}
+
+.portrait img,
+.mini-card img,
+.gallery-card img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.portrait-main {
+  inset: 30px 48px 90px 70px;
+  border-radius: 42px;
+  transform: rotate(-4deg);
+}
+
+.flower-note {
+  position: absolute;
+  right: 8px;
+  top: 28px;
+  display: grid;
+  gap: 8px;
+  width: 170px;
+  padding: 18px;
+  border-radius: 28px;
+  background: rgba(255, 249, 246, 0.92);
+  box-shadow: 0 18px 30px rgba(115, 63, 75, 0.12);
+}
+
+.flower-note span {
+  font-size: 0.8rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--rose-deep);
+}
+
+.flower-note strong {
+  font-family: Baskerville, "Palatino Linotype", serif;
+  font-size: 1.3rem;
+  line-height: 1.1;
+}
+
+.mini-card {
+  width: 200px;
+  height: 240px;
+  border-radius: 28px;
+}
+
+.mini-card-top {
+  right: 24px;
+  bottom: 160px;
+  transform: rotate(8deg);
+}
+
+.mini-card-bottom {
+  left: 0;
+  bottom: 32px;
+  transform: rotate(-8deg);
+}
+
+.quote-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+  align-items: center;
+  margin: 12px 0 72px;
+  padding: 28px 34px;
+  border-radius: 28px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(255, 244, 240, 0.84));
+  box-shadow: var(--shadow);
+}
+
+.quote-icon {
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(217, 120, 141, 0.18), rgba(243, 217, 149, 0.42));
+  color: var(--rose-deep);
+  font-size: 1.8rem;
+}
+
+.gallery-section {
+  padding-bottom: 72px;
+}
+
+.section-heading {
+  max-width: 700px;
+  margin-bottom: 24px;
+}
+
+.section-heading h2,
+.wish-copy h2 {
+  font-size: clamp(2.2rem, 5vw, 4rem);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+}
+
+.gallery-card {
+  grid-column: span 4;
+  position: relative;
+  min-height: 300px;
+  margin: 0;
+  padding: 14px;
+  border-radius: 30px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 243, 239, 0.72));
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform 280ms ease, box-shadow 280ms ease;
+}
+
+.gallery-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 28px 58px rgba(115, 63, 75, 0.2);
+}
+
+.gallery-card img {
+  height: 100%;
+  border-radius: 22px;
+}
+
+.gallery-card figcaption {
+  position: absolute;
+  left: 30px;
+  bottom: 28px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(255, 250, 247, 0.88);
+  color: var(--rose-deep);
+  font-size: 0.88rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.gallery-card.tall {
+  grid-column: span 5;
+  grid-row: span 2;
+  min-height: 640px;
+}
+
+.gallery-card.wide {
+  grid-column: span 7;
+}
+
+.wish-section {
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+  gap: 24px;
+  align-items: center;
+  padding: 34px;
+  border-radius: 34px;
+  background: linear-gradient(150deg, rgba(255, 244, 240, 0.82), rgba(255, 252, 249, 0.92));
+  box-shadow: var(--shadow);
+}
+
+.wish-bloom {
+  position: relative;
+  min-height: 340px;
+}
+
+.bloom {
+  position: absolute;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center, rgba(243, 217, 149, 0.95) 0 18%, transparent 19%),
+    radial-gradient(circle at 50% 16%, rgba(248, 188, 201, 0.92) 0 24%, transparent 25%),
+    radial-gradient(circle at 84% 50%, rgba(248, 188, 201, 0.92) 0 24%, transparent 25%),
+    radial-gradient(circle at 50% 84%, rgba(248, 188, 201, 0.92) 0 24%, transparent 25%),
+    radial-gradient(circle at 16% 50%, rgba(248, 188, 201, 0.92) 0 24%, transparent 25%),
+    radial-gradient(circle at 24% 24%, rgba(255, 222, 229, 0.92) 0 20%, transparent 21%),
+    radial-gradient(circle at 76% 24%, rgba(255, 222, 229, 0.92) 0 20%, transparent 21%),
+    radial-gradient(circle at 76% 76%, rgba(255, 222, 229, 0.92) 0 20%, transparent 21%),
+    radial-gradient(circle at 24% 76%, rgba(255, 222, 229, 0.92) 0 20%, transparent 21%);
+  filter: drop-shadow(0 24px 24px rgba(217, 120, 141, 0.16));
+  animation: drift 7s ease-in-out infinite;
+}
+
+.bloom-center {
+  inset: 70px 90px 70px 90px;
+}
+
+.bloom-one {
+  width: 120px;
+  height: 120px;
+  left: 20px;
+  top: 20px;
+  animation-delay: -1s;
+}
+
+.bloom-two {
+  width: 140px;
+  height: 140px;
+  right: 26px;
+  top: 56px;
+  animation-delay: -3s;
+}
+
+.bloom-three {
+  width: 110px;
+  height: 110px;
+  left: 64px;
+  bottom: 16px;
+  animation-delay: -5s;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes fall {
+  0% {
+    transform: translate3d(0, -10vh, 0) rotate(var(--twist-start)) scale(var(--scale));
+  }
+  100% {
+    transform: translate3d(var(--drift-x), 112vh, 0) rotate(var(--twist-end)) scale(var(--scale));
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.03);
+  }
+}
+
+@media (max-width: 980px) {
+  .hero,
+  .wish-section {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-visual {
+    min-height: 620px;
+  }
+
+  .gallery-card,
+  .gallery-card.tall,
+  .gallery-card.wide {
+    grid-column: span 6;
+    min-height: 320px;
+  }
+}
+
+@media (max-width: 720px) {
+  .page-shell {
+    width: min(100% - 20px, 1180px);
+    padding-top: 20px;
+    padding-bottom: 54px;
+  }
+
+  .hero-copy,
+  .wish-section,
+  .quote-card {
+    padding: 24px;
+  }
+
+  .hero-visual {
+    min-height: 520px;
+  }
+
+  .portrait-main {
+    inset: 16px 18px 96px 18px;
+  }
+
+  .flower-note {
+    right: 10px;
+    top: auto;
+    bottom: 22px;
+    width: 150px;
+    padding: 14px;
+  }
+
+  .mini-card {
+    width: 120px;
+    height: 148px;
+    border-radius: 20px;
+  }
+
+  .mini-card-top {
+    right: 14px;
+    bottom: 188px;
+  }
+
+  .mini-card-bottom {
+    left: 4px;
+    bottom: 28px;
+  }
+
+  .quote-card {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-card,
+  .gallery-card.tall,
+  .gallery-card.wide {
+    grid-column: auto;
+    min-height: 360px;
+  }
+
+  .wish-bloom {
+    min-height: 220px;
+  }
+
+  .bloom-center {
+    inset: 42px 40px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
