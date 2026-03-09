@@ -48,6 +48,28 @@ img {
   padding: 32px 0 80px;
 }
 
+.floral-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 4px auto 24px;
+  padding: 12px 18px;
+  width: fit-content;
+  border-radius: 999px;
+  background: rgba(255, 249, 246, 0.76);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 0 18px 36px rgba(115, 63, 75, 0.1);
+}
+
+.floral-banner p {
+  margin: 0;
+  font-size: 0.84rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--rose-deep);
+}
+
 .ambient {
   position: fixed;
   z-index: -2;
@@ -190,6 +212,26 @@ img {
 .hero-visual {
   position: relative;
   min-height: 680px;
+}
+
+.flower-cluster {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 3;
+}
+
+.flower-cluster-top {
+  top: 0;
+  left: 18px;
+  transform: rotate(-8deg);
+}
+
+.flower-cluster-bottom {
+  right: 18px;
+  bottom: 18px;
+  transform: rotate(10deg);
 }
 
 .portrait,
@@ -362,6 +404,245 @@ img {
   min-height: 340px;
 }
 
+.bouquet-wrap {
+  position: relative;
+  width: min(340px, 100%);
+  height: 340px;
+  margin: 0 auto;
+}
+
+.bouquet-paper,
+.bouquet-stems,
+.bouquet-flowers {
+  position: absolute;
+}
+
+.bouquet-paper {
+  bottom: 34px;
+  width: 180px;
+  height: 190px;
+  background: linear-gradient(180deg, #fff7ef, #f6d8c8);
+  box-shadow: 0 26px 40px rgba(115, 63, 75, 0.12);
+}
+
+.bouquet-paper-left {
+  left: 58px;
+  clip-path: polygon(0 0, 100% 10%, 46% 100%);
+  transform: rotate(-12deg);
+}
+
+.bouquet-paper-right {
+  right: 58px;
+  clip-path: polygon(0 10%, 100% 0, 54% 100%);
+  transform: rotate(12deg);
+}
+
+.bouquet-stems {
+  left: 50%;
+  bottom: 42px;
+  width: 10px;
+  height: 162px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #8ab782, #507b4a);
+  box-shadow:
+    -34px -12px 0 0 #6fa767,
+    32px -18px 0 0 #6fa767,
+    -58px 6px 0 0 #5e9157,
+    56px 8px 0 0 #5e9157;
+}
+
+.bouquet-flowers {
+  inset: 16px 12px 88px;
+}
+
+.bouquet-flowers .flower:nth-child(1) {
+  position: absolute;
+  left: 24px;
+  top: 56px;
+}
+
+.bouquet-flowers .flower:nth-child(2) {
+  position: absolute;
+  left: 120px;
+  top: 14px;
+}
+
+.bouquet-flowers .flower:nth-child(3) {
+  position: absolute;
+  right: 24px;
+  top: 64px;
+}
+
+.bouquet-flowers .flower:nth-child(4) {
+  position: absolute;
+  left: 88px;
+  top: 122px;
+}
+
+.bouquet-flowers .flower:nth-child(5) {
+  position: absolute;
+  right: 88px;
+  top: 132px;
+}
+
+.flower {
+  position: relative;
+  width: 74px;
+  height: 74px;
+  animation: drift 7s ease-in-out infinite;
+}
+
+.flower::before,
+.flower::after,
+.flower .flower-center,
+.flower .flower-center::before,
+.flower .flower-center::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+.flower .flower-center {
+  width: 22px;
+  height: 22px;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at 35% 35%, #fff6c9, #f1c863 70%);
+  z-index: 2;
+  box-shadow: 0 0 0 6px rgba(255, 248, 219, 0.35);
+}
+
+.flower::before {
+  background:
+    radial-gradient(circle at 50% 6%, var(--petal-main) 0 18%, transparent 19%),
+    radial-gradient(circle at 88% 28%, var(--petal-alt) 0 18%, transparent 19%),
+    radial-gradient(circle at 94% 68%, var(--petal-main) 0 18%, transparent 19%),
+    radial-gradient(circle at 50% 94%, var(--petal-alt) 0 18%, transparent 19%),
+    radial-gradient(circle at 6% 68%, var(--petal-main) 0 18%, transparent 19%),
+    radial-gradient(circle at 12% 28%, var(--petal-alt) 0 18%, transparent 19%);
+}
+
+.flower::after {
+  inset: 10px;
+  background:
+    radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.55) 0 10%, transparent 11%),
+    radial-gradient(circle at 82% 30%, rgba(255, 255, 255, 0.35) 0 10%, transparent 11%),
+    radial-gradient(circle at 18% 30%, rgba(255, 255, 255, 0.35) 0 10%, transparent 11%);
+  opacity: 0.9;
+}
+
+.flower-peony {
+  --petal-main: #f6b3c8;
+  --petal-alt: #f8d0dd;
+}
+
+.flower-rose {
+  --petal-main: #ea7d9e;
+  --petal-alt: #f2a8bc;
+}
+
+.flower-daisy {
+  --petal-main: #fffdf8;
+  --petal-alt: #f7ebcf;
+}
+
+.flower-lg {
+  width: 92px;
+  height: 92px;
+}
+
+.flower-xl {
+  width: 112px;
+  height: 112px;
+}
+
+.flower-sm {
+  width: 56px;
+  height: 56px;
+}
+
+.flower-lg .flower-center {
+  width: 26px;
+  height: 26px;
+}
+
+.flower-xl .flower-center {
+  width: 30px;
+  height: 30px;
+}
+
+.flower-sm .flower-center {
+  width: 18px;
+  height: 18px;
+}
+
+.flower-daisy .flower-center {
+  background: radial-gradient(circle at 35% 35%, #fff5b0, #efbf4f 70%);
+}
+
+.flower-rose .flower-center {
+  background: radial-gradient(circle at 35% 35%, #ffd9a8, #f3b464 70%);
+}
+
+.flower-cluster .flower:nth-child(2) {
+  animation-delay: -2s;
+}
+
+.flower-cluster .flower:nth-child(3) {
+  animation-delay: -4s;
+}
+
+.floral-banner .flower:nth-child(2),
+.floral-banner .flower:nth-child(5) {
+  animation-delay: -3s;
+}
+
+.floral-banner .flower:nth-child(3) {
+  animation-delay: -5s;
+}
+
+.gallery-card::before {
+  content: "";
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center, #f3d995 0 18%, transparent 19%),
+    radial-gradient(circle at 50% 12%, rgba(255, 247, 252, 0.98) 0 20%, transparent 21%),
+    radial-gradient(circle at 84% 50%, rgba(255, 206, 219, 0.95) 0 20%, transparent 21%),
+    radial-gradient(circle at 50% 88%, rgba(255, 247, 252, 0.98) 0 20%, transparent 21%),
+    radial-gradient(circle at 16% 50%, rgba(255, 206, 219, 0.95) 0 20%, transparent 21%);
+  box-shadow: 0 12px 24px rgba(217, 120, 141, 0.18);
+}
+
+.gallery-card:nth-child(2)::before,
+.gallery-card:nth-child(5)::before {
+  background:
+    radial-gradient(circle at center, #f3d995 0 18%, transparent 19%),
+    radial-gradient(circle at 50% 12%, rgba(255, 252, 243, 0.98) 0 20%, transparent 21%),
+    radial-gradient(circle at 84% 50%, rgba(255, 252, 243, 0.98) 0 20%, transparent 21%),
+    radial-gradient(circle at 50% 88%, rgba(255, 252, 243, 0.98) 0 20%, transparent 21%),
+    radial-gradient(circle at 16% 50%, rgba(255, 252, 243, 0.98) 0 20%, transparent 21%);
+}
+
+.gallery-card:nth-child(3)::before {
+  background:
+    radial-gradient(circle at center, #f3d995 0 18%, transparent 19%),
+    radial-gradient(circle at 50% 12%, rgba(246, 179, 200, 0.98) 0 20%, transparent 21%),
+    radial-gradient(circle at 84% 50%, rgba(248, 208, 221, 0.98) 0 20%, transparent 21%),
+    radial-gradient(circle at 50% 88%, rgba(246, 179, 200, 0.98) 0 20%, transparent 21%),
+    radial-gradient(circle at 16% 50%, rgba(248, 208, 221, 0.98) 0 20%, transparent 21%);
+}
+
+.gallery-card:nth-child(4)::before {
+  width: 68px;
+  height: 68px;
+}
+
 .bloom {
   position: absolute;
   border-radius: 50%;
@@ -447,6 +728,10 @@ img {
     min-height: 620px;
   }
 
+  .flower-cluster-top {
+    left: 8px;
+  }
+
   .gallery-card,
   .gallery-card.tall,
   .gallery-card.wide {
@@ -470,6 +755,21 @@ img {
 
   .hero-visual {
     min-height: 520px;
+  }
+
+  .floral-banner {
+    gap: 8px;
+    padding: 10px 14px;
+  }
+
+  .floral-banner p {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+  }
+
+  .floral-banner .flower:nth-child(1),
+  .floral-banner .flower:nth-child(6) {
+    display: none;
   }
 
   .portrait-main {
@@ -500,6 +800,16 @@ img {
     bottom: 28px;
   }
 
+  .flower-cluster-top {
+    top: 10px;
+    left: 10px;
+  }
+
+  .flower-cluster-bottom {
+    right: 8px;
+    bottom: 8px;
+  }
+
   .quote-card {
     grid-template-columns: 1fr;
   }
@@ -519,8 +829,41 @@ img {
     min-height: 220px;
   }
 
-  .bloom-center {
-    inset: 42px 40px;
+  .bouquet-wrap {
+    height: 240px;
+  }
+
+  .bouquet-paper {
+    width: 124px;
+    height: 136px;
+    bottom: 26px;
+  }
+
+  .bouquet-paper-left {
+    left: 56px;
+  }
+
+  .bouquet-paper-right {
+    right: 56px;
+  }
+
+  .bouquet-stems {
+    height: 106px;
+    bottom: 32px;
+  }
+
+  .bouquet-flowers {
+    inset: 8px 0 72px;
+  }
+
+  .flower-lg {
+    width: 76px;
+    height: 76px;
+  }
+
+  .flower-xl {
+    width: 88px;
+    height: 88px;
   }
 }
 
