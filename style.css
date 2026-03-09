@@ -252,8 +252,8 @@ img {
 
 .quote-card {
   display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 20px;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 28px;
   align-items: center;
   margin: 12px 0 72px;
   padding: 28px 34px;
@@ -265,12 +265,21 @@ img {
 .quote-art {
   display: grid;
   place-items: center;
+  width: 180px;
+  min-width: 180px;
 }
 
 .quote-art img {
-  width: 120px;
+  width: 180px;
+  max-width: 100%;
+  height: auto;
   filter: drop-shadow(0 18px 24px rgba(115, 63, 75, 0.12));
   animation: drift 7s ease-in-out infinite;
+}
+
+.quote-card p {
+  margin: 0;
+  max-width: 34rem;
 }
 
 .gallery-section {
@@ -481,7 +490,7 @@ img {
   }
 
   .quote-art img {
-    width: 90px;
+    width: 120px;
   }
 
   .bouquet-image {
